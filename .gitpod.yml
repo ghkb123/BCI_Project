@@ -1,0 +1,16 @@
+# Commands to start on workspace startup
+tasks:
+  - name: hardhat repo
+    init: npm install && npx hardhat deploy
+    command: npx hardhat node
+  - name: frontend repo
+    init: cd frontend && npm install
+    command: npm start
+
+ports:
+  - port: 8545
+    onOpen: notify
+    visibility: public
+  - port: 3000
+    onOpen: notify
+    visibility: public

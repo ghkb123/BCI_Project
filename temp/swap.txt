@@ -1,0 +1,31 @@
+const handleSwap = async () => {
+  if (!router.instance || !tokenAInstance) {
+    console.log("router or token instance not found");
+    return;
+  }
+
+  const time = Math.floor(Date.now() / 1000) + 3600;
+
+  await (
+    await tokenAInstance.approve(router.instance.address, ethers.utils.parseEther(amount.toString()))
+  ).wait();
+
+  await (
+    await router.instance.swapExactTokensForTokens(ethers.utils.parseEther(amount.toString()), 0, [tokenA, tokenB], currentAddress, time)
+  ).wait();
+  
+};
+
+
+// token and router instance must exist: 
+//      !router.instance || !tokenAInstance
+
+// set the time: 
+//      const time = Math.floor(Date.now() / 1000) + 3600;
+
+// approve router to spend token A: 
+//      tokenAInstance.approve(router.instance.address, ethers.utils.parseEther(amount.toString()))
+
+// swap tokenA for tokenB: 
+//      router.instance.swapExactTokensForTokens(ethers.utils.parseEther(amount.toString()), 0, [tokenA, tokenB], currentAddress, time)
+
